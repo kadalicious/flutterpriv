@@ -1,213 +1,67 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: "gridview",
-    home: myapp(),
-  ));
+  runApp(MyApp());
 }
 
-class myapp extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BelajarNavBar(),
+    );
+  }
+}
+
+class BelajarNavBar extends StatefulWidget {
+  @override
+  _BelajarNavBarState createState() => _BelajarNavBarState();
+}
+
+class _BelajarNavBarState extends State<BelajarNavBar> {
+  int _selectedNavbar = 0;
+
+  void _changeSelectedNavBar(int index) {
+    setState(() {
+      _selectedNavbar = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("combination"),
+        title: Text("bottom navbar oke"),
       ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              RaisedButton(
-                child: Text("button 1"),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => halaman1()),
-                  );
-                },
-              ),
-
-              RaisedButton(
-                child: Text("button 2"),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => halaman2()),
-                  );
-                },
-              ),
-
-              RaisedButton(
-                child: Text("button 3"),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => halaman3()),
-                  );
-                },
-              ),
-            ],
+      body: Center(
+        child: Text("Tab Index yang aktif : $_selectedNavbar",
+            style: TextStyle(fontSize: 16)),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+       items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "beranda",
           ),
-
-
-
-
-
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              RaisedButton(
-                child: Text("button 4"),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => halaman4()),
-                  );
-                },
-              ),
-
-              RaisedButton(
-                child: Text("button 5"),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => halaman5()),
-                  );
-                },
-              ),
-
-              RaisedButton(
-                child: Text("button 6"),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => halaman6()),
-                  );
-                },
-              ),
-            ],
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+             label: "layanan",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.mail),
+            label: "pesan",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+             label: "akun",
           ),
         ],
-      ),
-    );
-  }
-}
-
-class halaman1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("halaman 1"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text("kembali"),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-    );
-  }
-}
-
-
-class halaman2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("halaman 2"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text("kembali"),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-    );
-  }
-}
-
-
-class halaman3 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("halaman 3"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text("kembali"),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class halaman4 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("halaman 4"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text("kembali"),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class halaman5 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("halaman 5"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text("kembali"),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class halaman6 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("halaman 6"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text("kembali"),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        currentIndex: _selectedNavbar,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true,
+        onTap: _changeSelectedNavBar,
       ),
     );
   }
